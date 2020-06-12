@@ -30,4 +30,11 @@ public class MainActivity extends AppCompatActivity {
         intent.putExtra(Service2.EXTRA_MYARG, "Hello, Service2");
         startService(intent);
     }
+
+    public void onClickTest3(View v) {
+        Log.d(TAG, "onClickTest3 in " + Thread.currentThread());
+        Intent intent = new Intent(this, Service3.class);
+        intent.putExtra(Service3.EXTRA_MYARG, "Hello, Service3");
+        startService(intent);
+    }
 }
