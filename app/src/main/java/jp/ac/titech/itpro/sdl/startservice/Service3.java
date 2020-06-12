@@ -7,6 +7,8 @@ import android.util.Log;
 public class Service3 extends IntentService {
     private final static String TAG = jp.ac.titech.itpro.sdl.startservice.Service3.class.getSimpleName();
     public final static String EXTRA_MYARG = "MYARG";
+    public final static String EXTRA_ANSWER = "ANSWER";
+    public final static String ACTION = "jp.ac.titech.itpro.sdl.startservice.action.TEST_BROADCAST";
 
     public Service3() {
         super(TAG);
@@ -16,6 +18,12 @@ public class Service3 extends IntentService {
     protected void onHandleIntent(Intent intent) {
         Log.d(TAG, "onHandleIntent in " + Thread.currentThread());
         Log.d(TAG, "myarg = " + intent.getStringExtra(EXTRA_MYARG));
+
+        Intent sendIntent = new Intent();
+        sendIntent.setAction(Service3.ACTION);
+        sendIntent.putExtra(EXTRA_ANSWER, "Broadcast by Service3");
+        sendBroadcast(sendIntent);
+
         try {
             Thread.sleep(5000); // 5 sec
         } catch (InterruptedException e) {
